@@ -1,34 +1,55 @@
-Clone the repository:
- git clone https://github.com/SSrivastava18/GPS-Enabled-Transmitter-Receiver-System-for-UGVs.git
- 
- cd lora-gps-tracker
+GPS-Enabled Transmitter-Receiver System for UGVs
 
-Install required dependencies:
+Enables Unmanned Ground Vehicles (UGVs) to transmit and receive GPS signals using a ground-based setup. Ideal for extending GPS coverage in GPS-denied environments or for simulation and testing of GPS-based communication protocols.
 
-  pip install pyserial micropyGPS
 
-▶️ Usage
+Features
 
-1️⃣ Run Transmitter
+GPS Signal Forwarding: Relays GPS data from a base station to a UGV.
 
-   python transmitter.py
+UGV Localization: UGV can receive GPS via RF, enabling positioning even when onboard receivers are disabled or unavailable.
+
+Versatile Setup: Suitable for research, testing, and fallback navigation scenarios.
+
+Open-Source: Freely reusable and modifiable under the MIT License.
+
+
+Hardware Requirements
+
+| Role               | Required Components                                     |
+| ------------------ | ------------------------------------------------------- |
+| **Transmitter**    | GPS module (providing NMEA or raw data), RF transmitter |
+| **Receiver (UGV)** | RF receiver, onboard computing platform                 |
+| **Optional**       | Antennas, RF amplifier or filter, portable power supply |
+
+
+Setup Instructions
+
+1. Clone the Repositor
+
+   git clone https://github.com/SSrivastava18/GPS-Enabled-Transmitter-Receiver-System-for-UGVs.git
    
-2️⃣ Run Receiver
+   cd GPS-Enabled-Transmitter-Receiver-System-for-UGVs
 
-   python receiver.py
+2. Install Dependencies
 
-It will print incoming GPS coordinates in real time:
+   pip install pyserial
 
-  Received data: 17.446500,78.348000
+Configure Devices
 
+ Edit transmitter.py and receiver.py to set the correct serial ports, baud rates, and RF channel parameters.
 
-⚠️ Notes
+ Place or secure antennas properly to ensure reliable transmission.
 
-Ensure both LoRa modules use the same frequency and settings.
-If using raw SX1278 modules (SPI-based), this code will not work directly. You’ll need an SPI LoRa library (e.g., pyLoRa).
+ Usage
 
-Serial ports may differ; update in code:
+ Transmitter (Ground Station)
 
-LoRa → /dev/ttyS0
+ Reads GPS data (e.g., via serial NMEA stream) and forwards it over RF:
 
-GPS → /dev/ttyUSB0
+ python transmitter.py
+
+ Receiver (On UGV)
+
+ python receiver.py
+
